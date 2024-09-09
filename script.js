@@ -20,21 +20,23 @@ function getComputerchoice(){
 }
 
 function getHumanChoice(){
-    const HumanChoice = window.prompt("Rock, Paper or Scissors ?")
-    if (HumanChoice.toLowerCase() == "rock" || HumanChoice.toLowerCase() == "paper" || HumanChoice.toLowerCase() == "scissors"){
-        alert("You picked " + HumanChoice);
-        return HumanChoice.toLowerCase();
+    const value = window.prompt("Rock, Paper or Scissors ?")
+    if (value.toLowerCase() == "rock" || value.toLowerCase() == "paper" || value.toLowerCase() == "scissors"){
+        alert("You picked " + value);
+        return value.toLowerCase();
     } else{
         return alert("Please enter a valid answer");
     }
 }
 
-let HumanScore = 0;
-let ComputerScore = 0;
-
-
+function scoreTracker(){
+    console.log(HumanScore)
+    console.log(ComputerScore)
+}
 
 function playRound(HumanChoice, ComputerChoice){
+    console.log(HumanChoice)
+    console.log(ComputerChoice)
     if (HumanChoice === ComputerChoice){
         console.log("Tie !")
     } else{
@@ -42,25 +44,43 @@ function playRound(HumanChoice, ComputerChoice){
             case "rock":
                 if (ComputerChoice === "scissors"){
                     console.log("You won the round !")
+                    HumanScore = HumanScore + 1;
+                    scoreTracker()
                 } else {
                     console.log("You lost the round !")
+                    ComputerScore = ComputerScore + 1;
+                    scoreTracker()
                 }
                 break;
-            case "scissors":
-                if (ComputerChoice === "paper"){
-                    console.log("You won the round !")
-                } else {
-                    console.log("You lost the round !")
+                case "scissors":
+                    if (ComputerChoice === "paper"){
+                        console.log("You won the round !")
+                        HumanScore = HumanScore + 1;
+                        scoreTracker()
+                    } else {
+                        console.log("You lost the round !")
+                        ComputerScore = ComputerScore + 1;
+                        scoreTracker()
+                    }
+                    break;
+                    case "paper":
+                        if (ComputerChoice === "rock"){
+                            console.log("You won the round !")
+                            HumanScore = HumanScore + 1;
+                            scoreTracker()
+                        } else {
+                            console.log("You lost the round !")
+                            ComputerScore = ComputerScore + 1;
+                            scoreTracker()
+                        }
+                        break;
+                    }
                 }
-                break;
-            case "paper":
-                if (ComputerChoice === "rock"){
-                    console.log("You won the round !")
-                } else {
-                    console.log("You lost the round !")
-                }
-                break;
             }
-        }
-    }
+            
+let HumanChoice = getHumanChoice()
+let ComputerChoice = getComputerchoice()
+let HumanScore = 0
+let ComputerScore = 0
 
+playRound(HumanChoice, ComputerChoice)
