@@ -22,7 +22,7 @@ function getComputerchoice(){
 function getHumanChoice(){
     const value = window.prompt("Rock, Paper or Scissors ?")
     if (value.toLowerCase() == "rock" || value.toLowerCase() == "paper" || value.toLowerCase() == "scissors"){
-        alert("You picked " + value);
+        alert(`You picked ${value}`);
         return value.toLowerCase();
     } else{
         return alert("Please enter a valid answer");
@@ -78,9 +78,16 @@ function playRound(HumanChoice, ComputerChoice){
                 }
             }
             
-let HumanChoice = getHumanChoice()
-let ComputerChoice = getComputerchoice()
+
 let HumanScore = 0
 let ComputerScore = 0
 
-playRound(HumanChoice, ComputerChoice)
+function playGame(){
+    while(HumanScore < 5 && ComputerScore < 5){
+        let HumanChoice = getHumanChoice()
+        let ComputerChoice = getComputerchoice()
+        playRound(HumanChoice, ComputerChoice)
+    }
+}
+
+playGame()
