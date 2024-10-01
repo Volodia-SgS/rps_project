@@ -1,3 +1,15 @@
+const rock = document.querySelector("#rock-btn")
+const paper = document.querySelector("#paper-btn")
+const scissors = document.querySelector("#scissors-btn")
+const humanScoreDisplay = document.querySelector("#human-score")
+const computerScoreDisplay = document.querySelector("#computer-score")
+const roundResultDisplay = document.querySelector("#round-result")
+const gameResultDisplay = document.querySelector("#game-result")
+
+let HumanScore = 0
+let ComputerScore = 0
+
+
 function random(max){
     return Math.floor(Math.random()*max);
 }
@@ -30,46 +42,46 @@ function getHumanChoice(){
 }
 
 function scoreTracker(){
-    console.log(HumanScore)
-    console.log(ComputerScore)
+    humanScoreDisplay.textContent = HumanScore
+    computerScoreDisplay.textContent = ComputerScore
 }
 
 function playRound(HumanChoice, ComputerChoice){
     console.log(HumanChoice)
     console.log(ComputerChoice)
     if (HumanChoice === ComputerChoice){
-        console.log("Tie !")
+        roundResultDisplay.textContent = "It's a tie !"
     } else{
         switch (HumanChoice){
             case "rock":
                 if (ComputerChoice === "scissors"){
-                    console.log("You won the round !")
+                    roundResultDisplay.textContent = "You won the round !"
                     HumanScore = HumanScore + 1;
                     scoreTracker()
                 } else {
-                    console.log("You lost the round !")
+                    roundResultDisplay.textContent = "You lost the round !"
                     ComputerScore = ComputerScore + 1;
                     scoreTracker()
                 }
                 break;
                 case "scissors":
                     if (ComputerChoice === "paper"){
-                        console.log("You won the round !")
+                        roundResultDisplay.textContent = "You won the round !"
                         HumanScore = HumanScore + 1;
                         scoreTracker()
                     } else {
-                        console.log("You lost the round !")
+                        roundResultDisplay.textContent = "You lost the round !"
                         ComputerScore = ComputerScore + 1;
                         scoreTracker()
                     }
                     break;
                     case "paper":
                         if (ComputerChoice === "rock"){
-                            console.log("You won the round !")
+                            roundResultDisplay.textContent = "You won the round !"
                             HumanScore = HumanScore + 1;
                             scoreTracker()
                         } else {
-                            console.log("You lost the round !")
+                            roundResultDisplay.textContent = "You lost the round !"
                             ComputerScore = ComputerScore + 1;
                             scoreTracker()
                         }
@@ -79,15 +91,33 @@ function playRound(HumanChoice, ComputerChoice){
             }
             
 
-let HumanScore = 0
-let ComputerScore = 0
 
 function playGame(){
-    while(HumanScore < 5 && ComputerScore < 5){
+    while(HumanScore < 3 && ComputerScore < 3){
         let HumanChoice = getHumanChoice()
         let ComputerChoice = getComputerchoice()
         playRound(HumanChoice, ComputerChoice)
     }
+    if (HumanScore === 3){
+        gameResultDisplay.textContent = "You won the game !"
+    } else {
+        gameResultDisplay.textContent = "You lost the game !"
+    }
 }
 
-playGame()
+let playerChoice = 0
+
+rock.addEventListener("click", () =>{
+    playerChoice = "rock"
+    console.log(playerChoice)
+})
+
+paper.addEventListener("click", () =>{
+    playerChoice = "paper"
+    console.log(playerChoice)
+})
+
+scissors.addEventListener("click", () =>{
+    playerChoice = "scissors"
+    console.log(playerChoice)
+})
